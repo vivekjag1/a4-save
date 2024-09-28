@@ -14,7 +14,6 @@ export function PurchaseContextProvider({children}){
   const [purchases, setPurchases] = useState([]);
   const setPurchasesEvent = (purchases) => {
     console.log("running set event function");
-    console.log("why god", purchases);
     setPurchases(purchases)
   }
   const value = {

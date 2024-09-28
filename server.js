@@ -16,7 +16,6 @@ import session from 'express-session';
 
 import user from "./mongoose/user/schema.js";
 
-console.log("here");
 
 
 

@@ -5,7 +5,6 @@ import { isInBudget } from '../utils/isInBudget.js';
 const router = express.Router();
 router.post('/updatePurchase', async (req, res) =>{
   const body = JSON.parse(req.body);
-  console.log("inside", body);
   const newPurchase = {
     "title": body.title,
     "category": body.category,
