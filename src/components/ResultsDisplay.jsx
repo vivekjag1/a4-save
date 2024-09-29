@@ -13,7 +13,9 @@
     const [userName, setUsername] = useState('');
 
     useEffect(() => {
+      console.log("running UE");
       const makeRequest = async () => {
+
         const data = await( await fetch(`${import.meta.env.VITE_BE_PORT}/getResults`, {
           method:'GET'
         })).json();

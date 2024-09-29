@@ -226,5 +226,7 @@
 
     res.json({"data": allResults});
   });
+  app.disable("etag");
+
   export default router;app.listen(process.env.PORT || 3001);
   console.log("app ready on port 3000!")
