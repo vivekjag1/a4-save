@@ -36,7 +36,7 @@
   const app = express();
   app.use(express.urlencoded({extended:true}));
   app.use(express.json());
-  app.use(cors({origin:'http://localhost:3000', credentials: true}));
+  app.use(cors({origin:`${process.env.VITE_FE_PORT}`, credentials: true}));
   app.use(session({secret:'webware', resave:false, saveUninitialized:false}));
   app.use(passport.initialize());
   app.use(passport.session());
