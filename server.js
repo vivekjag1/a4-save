@@ -115,6 +115,23 @@
     req.logout(() => res.send(html));
 
   })
+  app.get('/getResults', async (req, res) =>{
+    res.set('Cache-Control', 'no-store');
+
+    try{
+      const data = await PurchaseItem.find({userName: username});
+      console.log("the data is", data);
+
+      res.json({"data": data});
+    }
+    catch (err){
+
+      res.sendStatus(400);
+    }
+
+
+
+  });
 
   app.use(express.static('dist'));
   app.get('*', (req, res) => {
@@ -163,23 +180,7 @@
     console.log(req.user);
   });
   app.use(exampleRoute);
-  app.get('/getResults', async (req, res) =>{
-    res.set('Cache-Control', 'no-store');
 
-    try{
-      const data = await PurchaseItem.find({userName: username});
-      console.log("the data is", data);
-
-      res.json({"data": data});
-    }
-    catch (err){
-
-      res.sendStatus(400);
-    }
-
-
-
-  });
   app.use(deleteAll);
 
   app.use(postMiddleware);
