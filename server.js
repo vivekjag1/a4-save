@@ -40,7 +40,9 @@ app.use(session({secret:'webware', resave:false, saveUninitialized:false}));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.static('dist'));
-
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname,  'dist', 'index.html' ))
+})
 app.get('/auth/github',passport.authenticate('github', {scope:['user:email']}));
 const isLoggedIn = (req, res, next) => {
   console.log('user is', req.user);
