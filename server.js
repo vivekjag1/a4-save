@@ -45,13 +45,8 @@
   app.use(session({secret:'webware', resave:false, saveUninitialized:false}));
   app.use(passport.initialize());
   app.use(passport.session());
-  app.use(express.static('dist'));
-  app.get('*', (req, res) => {
-    console.log(__dirname);
-    res.sendFile(path.join(__dirname,  'dist', 'index.html' ))
-  })
 
-  app.get('/auth/github',passport.authenticate('github', {scope:['user:email']}));
+
   const isLoggedIn = (req, res, next) => {
     console.log('user is', req.user);
     if(req.isAuthenticated()){
@@ -67,6 +62,11 @@
   app.get('/', (req, res) => {
     res.redirect('/auth/github');
   });
+
+
+
+  app.get('/auth/github',passport.authenticate('github', {scope:['user:email']}));
+
 
   app.get('/git/callback',
     passport.authenticate('github', {
@@ -116,7 +116,11 @@
 
   })
 
-
+  app.use(express.static('dist'));
+  app.get('*', (req, res) => {
+    console.log(__dirname);
+    res.sendFile(path.join(__dirname,  'dist', 'index.html' ))
+  })
 
 
 
