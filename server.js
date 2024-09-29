@@ -13,6 +13,9 @@
   import cors from 'cors';
   import './utils/auth.js';
   import session from 'express-session';
+  import path from 'path';
+
+  import {fileURLToPath} from 'url';
 
   import user from "./mongoose/user/schema.js";
 
@@ -31,9 +34,8 @@
   import passport from "passport";
   import {isInBudget} from "./utils/isInBudget.js";
   import router from "./routes/addPurchase.js";
-  import * as path from "node:path";
   import {dirname} from "path";
-
+  const __filename = fileURLToPath(import.meta.url)
   const __dirname = dirname(__filename)
   let username = '';
   const app = express();
