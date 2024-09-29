@@ -164,6 +164,8 @@
   });
   app.use(exampleRoute);
   app.get('/getResults', async (req, res) =>{
+    res.set('Cache-Control', 'no-store');
+
     try{
       const data = await PurchaseItem.find({userName: username});
       console.log("the data is", data);
