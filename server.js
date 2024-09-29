@@ -32,6 +32,9 @@
   import {isInBudget} from "./utils/isInBudget.js";
   import router from "./routes/addPurchase.js";
   import * as path from "node:path";
+  import {dirname} from "path";
+
+  const __dirname = dirname(__filename)
   let username = '';
   const app = express();
   app.use(express.urlencoded({extended:true}));
