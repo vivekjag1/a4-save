@@ -35,11 +35,12 @@ let username = '';
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
-
+app.use(cors({origin:'http://localhost:3000', credentials: true}));
 app.use(session({secret:'webware', resave:false, saveUninitialized:false}));
-
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(express.static('dist'));
+
 app.get('/auth/github',passport.authenticate('github', {scope:['user:email']}));
 const isLoggedIn = (req, res, next) => {
   console.log('user is', req.user);
@@ -104,8 +105,6 @@ app.get('/auth/logout', (req, res) => {
 
 })
 
-app.use(express.static('public'));
-app.use(cors({origin:'http://localhost:3000', credentials: true}));
 
 
 
