@@ -42,6 +42,7 @@
   app.use(passport.session());
   app.use(express.static('dist'));
   app.get('*', (req, res) => {
+    console.log(__dirname);
     res.sendFile(path.join(__dirname,  'dist', 'index.html' ))
   })
   app.get('/auth/github',passport.authenticate('github', {scope:['user:email']}));
