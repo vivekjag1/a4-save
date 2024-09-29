@@ -69,7 +69,7 @@ app.get('/failed',(req, res) => {
 });
 app.get('/protected', isLoggedIn, async (req, res) => {
   username = req.user['username'];
-  res.redirect('http://localhost:3000/home');
+  res.redirect(`${process.env.VITE_FE_PORT}/home`);
 
 
 });

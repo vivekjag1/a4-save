@@ -20,7 +20,7 @@ export const InputForm = () => {
       "cashOnHand": cashOnHand
     });
     console.log(purchases);
-    const getResults = await(await fetch('http://localhost:3001/addPurchase', {
+    const getResults = await(await fetch(`${import.meta.env.VITE_BE_PORT}/addPurchase`, {
       credentials:"include",
       method: 'POST',
       body

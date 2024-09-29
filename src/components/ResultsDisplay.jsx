@@ -14,7 +14,7 @@
 
     useEffect(() => {
       const makeRequest = async () => {
-        const data = await( await fetch('http://localhost:3001/getResults', {
+        const data = await( await fetch(`${import.meta.env.VITE_BE_PORT}/getResults`, {
           method:'GET'
         })).json();
 
@@ -31,7 +31,7 @@
         "title": title,
         "username": userName
       });
-      const data = await(await fetch('http://localhost:3001/deletePurchase', {
+      const data = await(await fetch(`${import.meta.env.VITE_BE_PORT}/deletePurchase`, {
         method: 'POST',
         body
       })).json();
@@ -45,7 +45,7 @@
         "title": title,
         "username": userName
       });
-      const data = await(await fetch('http://localhost:3001/deletePurchase', {
+      const data = await(await fetch(`${import.meta.env.VITE_BE_PORT}/deletePurchase`, {
         method: 'POST',
         body
       })).json();

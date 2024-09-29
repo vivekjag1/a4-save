@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react";
 import { usePurchaseContext } from "/src/contexts/purchaseContext.jsx";
 
-
 export const EditModal = (props) => {
   const[oldTitle, setOldTile] = useState(props.clickedItem.title);
   const[title, setTitle] = useState(props.clickedItem.title);
@@ -25,7 +24,7 @@ export const EditModal = (props) => {
       "cashOnHand": parseInt(cashOnHand),
       "userName": userName,
     });
-    const makeRequest = await (await fetch('http://localhost:3001/updatePurchase', {
+    const makeRequest = await (await fetch(`${import.meta.env.VITE_BE_PORT}/updatePurchase`, {
       method: 'POST',
       body
     })).json();
