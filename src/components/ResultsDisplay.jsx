@@ -12,7 +12,19 @@
     const [clickedItem, setClickedItem] = useState({});
     const [userName, setUsername] = useState('');
 
+    useEffect(() => {
+      const makeRequest = async () => {
+        const data = await( await fetch('http://localhost:3001/getResults', {
+          method:'GET'
+        })).json();
 
+        console.log("made request", data);
+        setPurchases(data.data);
+        setItems(data.data)
+      };
+
+      makeRequest().then();
+    }, [window])
     const handleDelete = async (title, userName ) => {
       console.log("inside");
       const body = JSON.stringify({

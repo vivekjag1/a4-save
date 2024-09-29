@@ -31,6 +31,7 @@ import express from 'express';
 import passport from "passport";
 import {isInBudget} from "./utils/isInBudget.js";
 import router from "./routes/addPurchase.js";
+let username = '';
 const app = express();
 app.use(express.urlencoded({extended:true}));
 app.use(express.json());
@@ -67,6 +68,7 @@ app.get('/failed',(req, res) => {
 
 });
 app.get('/protected', isLoggedIn, async (req, res) => {
+  username = req.user['username'];
   res.redirect('http://localhost:3000/home');
 
 
@@ -147,7 +149,21 @@ app.get('/user', (req, res) => {
   console.log(req.user);
 });
 app.use(exampleRoute);
-app.use(getResults);
+app.get('/getResults', async (req, res) =>{
+  try{
+    const data = await PurchaseItem.find({userName: username});
+    console.log("the data is", data);
+
+    res.json({"data": data});
+  }
+  catch (err){
+
+    res.sendStatus(400);
+  }
+
+
+
+});
 app.use(deleteAll);
 
 app.use(postMiddleware);

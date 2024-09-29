@@ -8,6 +8,7 @@ router.get('/getResults', async (req, res) =>{
         res.json({"data": data});
     }
     catch (err){
+
         res.sendStatus(400);
     }
 
