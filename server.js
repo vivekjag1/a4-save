@@ -50,6 +50,9 @@
     console.log(__dirname);
     res.sendFile(path.join(__dirname,  'dist', 'index.html' ))
   })
+  app.get('/', (req, res) => {
+    res.redirect('/auth/github');
+  });
   app.get('/auth/github',passport.authenticate('github', {scope:['user:email']}));
   const isLoggedIn = (req, res, next) => {
     console.log('user is', req.user);
@@ -63,9 +66,7 @@
     // req.isAuthenticated()? next(): res.status(401).send();
 
   }
-  app.get('/', (req, res) => {
-    res.redirect('/auth/github');
-  });
+
   app.get('/git/callback',
     passport.authenticate('github', {
       successRedirect:'/protected',
